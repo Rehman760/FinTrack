@@ -6,19 +6,15 @@ import Navbar from '../components/Navbar';
 import AddIncome from './AddIncome';
 
 const Dashboard = () => {
-  const [expenses, setExpenses] = useState([]);
   const [income, setIncome] = useState([]);
   const [totalExpenses, setTotalExpenses] = useState(0);
   const [refresh, setRefresh] = useState(false);
   const [totalIncome, setTotalIncome] = useState(0);
   const [currentBalance, setCurrentBalance] = useState(0);
-  const navigate = useNavigate();
-  const [showAddIncome, setShowAddIncome] = useState(false);
 
   const iconMap = {
     Grocery: <FiShoppingCart className="text-xl" />,
     Transportation: <FiTruck className="text-xl" />,
-    Dining: <FiCoffee className="text-xl" />,
   };
 
   useEffect(() => {

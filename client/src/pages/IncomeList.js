@@ -19,7 +19,7 @@ function IncomeList() {
 
     useEffect(() => {
         fetchIncome();
-    }, []);
+    }, [fetchIncome]);
 
     const handleEdit = (income) => {
         setEditId(income._id);
