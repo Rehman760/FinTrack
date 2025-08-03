@@ -1,7 +1,7 @@
 // frontend/src/pages/Login.jsx
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import API from '../api/axios';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -11,7 +11,7 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', {
+      const res = await API.post('/auth/login', {
         email,
         password,
       });
@@ -20,8 +20,9 @@ export default function Login() {
         localStorage.setItem('userId', res.data.user.id);
       }
       navigate('/dashboard');
-    } catch (error) {
-      alert(error.response.data.message);
+    } catch (err) {
+      const msg = err?.response?.data?.message || 'Login failed. Please try again later.';
+      alert(msg);
     }
   };
 
