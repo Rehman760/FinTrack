@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import API from '../api/axios';
 
 function IncomeList() {
@@ -8,14 +8,14 @@ function IncomeList() {
     const [editSource, setEditSource] = useState('');
     const userId = localStorage.getItem('userId');
 
-    const fetchIncome = async () => {
+    const fetchIncome = useCallback(async () => {
         try {
             const res = await API.get(`/income/${userId}`);
             setIncomeList(res.data);
         } catch (err) {
             alert('Failed to fetch income');
         }
-    };
+    }, [userId]);
 
     useEffect(() => {
         fetchIncome();

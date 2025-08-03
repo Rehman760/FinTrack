@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import API from '../api/axios';
-import { FiShoppingCart, FiTruck, FiCoffee } from 'react-icons/fi';
+import { FiShoppingCart, FiTruck } from 'react-icons/fi';
 import Navbar from '../components/Navbar';
-import AddIncome from './AddIncome';
 
 const Dashboard = () => {
-  const [income, setIncome] = useState([]);
+  const [expenses, setExpenses] = useState([]);
   const [totalExpenses, setTotalExpenses] = useState(0);
-  const [refresh, setRefresh] = useState(false);
   const [totalIncome, setTotalIncome] = useState(0);
   const [currentBalance, setCurrentBalance] = useState(0);
 
@@ -32,7 +29,6 @@ const Dashboard = () => {
 
         // Fetch income
         const incRes = await API.get(`/income/${userId}`);
-        setIncome(incRes.data);
         let totalInc = 0;
         incRes.data.forEach((i) => {
           totalInc += Number(i.amount);
