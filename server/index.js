@@ -31,10 +31,9 @@ app.use('/api/income', incomeRoutes);
 
 
 if (process.env.NODE_ENV === 'production') {
-  const __dirname = path.resolve();
-  app.use(express.static(path.join(__dirname, '../client/build')));
+  app.use(express.static(path.join(process.cwd(), 'client', 'build')));
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+    res.sendFile(path.join(process.cwd(), 'client', 'build', 'index.html'));
   });
 }
 connectDB().then(() => {
