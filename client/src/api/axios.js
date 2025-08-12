@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: '/api',
+  baseURL:
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:5000/api' // Local backend
+      : '/api', // Production (proxy or same domain)
 });
 
 API.interceptors.request.use((req) => {
@@ -9,7 +12,6 @@ API.interceptors.request.use((req) => {
   if (token) {
     req.headers.Authorization = `Bearer ${token}`;
   }
-
   return req;
 });
 

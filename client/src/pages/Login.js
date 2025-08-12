@@ -30,6 +30,14 @@ export default function Login() {
     <div className="flex justify-center items-center h-screen bg-gray-50">
       <div className="w-full max-w-md p-6 bg-white rounded shadow">
         <h2 className="text-2xl font-bold mb-6 text-center">Welcome back</h2>
+        <button
+          type="button"
+          onClick={() => window.location.href = "/api/auth/google"}
+          className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-lg mt-4 flex items-center justify-center gap-2"
+        >
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png" alt="Google" className="w-5 h-5" />
+          Login with Google
+        </button>
         <form onSubmit={handleLogin}>
           <label className="block mb-2">Email</label>
           <input
