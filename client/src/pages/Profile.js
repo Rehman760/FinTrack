@@ -31,6 +31,11 @@ const Profile = () => {
 
     const handleSave = async (e) => {
         e.preventDefault();
+        // Name cannot be only numbers
+        if (/^\d+$/.test(form.name)) {
+            alert('Name cannot be only numbers.');
+            return;
+        }
         const formData = new FormData();
         formData.append('name', form.name);
         formData.append('email', form.email);

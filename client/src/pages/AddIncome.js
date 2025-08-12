@@ -15,12 +15,17 @@ function AddIncome({ onSuccess }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const userId = localStorage.getItem('userId');
+        const amount = Number(formData.amount);
         if (!userId || !formData.amount) {
             setError('User ID and amount are required');
             return;
         }
+        if (isNaN(amount) || amount < 0) {
+            setError('Income must be a non-negative number');
+            return;
+        }
         try {
-            await API.post('/income', { userId, ...formData });
+            await API.post('/income', { userId, ...formData, amount });
             setFormData({ amount: '', source: '' });
             setError('');
             if (onSuccess) onSuccess();

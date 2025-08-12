@@ -12,6 +12,11 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Username cannot be only numbers
+    if (/^\d+$/.test(formData.name)) {
+      alert('Username cannot be only numbers.');
+      return;
+    }
     try {
       await API.post('/auth/register', formData);
       navigate('/login');
